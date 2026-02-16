@@ -23,6 +23,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy dependencies from backend folder
 COPY backend/requirements.txt .
 
+# ⚡ SPEED UP: Install PyTorch CPU only first (Cached layer)
+# This prevents downloading specific huge GPU versions and speeds up build
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
