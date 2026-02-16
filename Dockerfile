@@ -52,7 +52,7 @@ EXPOSE 8000
 # Health check
 # Health check (Increased start-period for AI model loading)
 HEALTHCHECK --interval=30s --timeout=30s --start-period=120s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
 
 # Run the application
 # Run the application using shell form to allow variable expansion
