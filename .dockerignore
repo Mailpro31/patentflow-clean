@@ -1,0 +1,50 @@
+# Version Control
+.git/
+.gitignore
+
+# Dependencies
+**/node_modules/
+**/bower_components/
+**/.venv/
+**/venv/
+**/env/
+__pycache__/
+
+# Build artifacts
+dist/
+build/
+*.zip
+*.tar.gz
+*.whl
+
+# Environment variables
+.env
+.env.*
+! .env.example
+! .env.production.example
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Frontend (not needed for backend image)
+frontend/
+
+# Local data / models
+**/*.pt
+**/*.pth
+**/*.bin
+**/*.onnx
+**/*.h5
+**/*.joblib
+**/*.pkl
+
+# Logs
+logs/
+*.log
+
+# Temp files
+tmp/
+coverage/
+.coverage
