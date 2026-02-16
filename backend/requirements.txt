@@ -53,7 +53,7 @@ scour==0.38.2
 # Note: Install via pip install git+https://github.com/facebookresearch/segment-anything-2.git
 # Or uncomment below:
 # git+https://github.com/facebookresearch/segment-anything-2.git
-torchvision==0.16.0
+torchvision>=0.16.0
 
 # SVG Processing
 svgwrite==1.4.3
