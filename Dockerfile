@@ -31,8 +31,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 # ⚡ SPEED UP: Install PyTorch CPU only first using uv
 RUN uv pip install --system --no-cache torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
-# Install Python dependencies using uv
-RUN uv pip install --system --no-cache -r requirements.txt
+# Install Python dependencies using uv, enforcing CPU versions for all sub-dependencies
+RUN uv pip install --system --no-cache -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Copy application code from backend folder
 COPY backend/app ./app
