@@ -42,3 +42,6 @@ stripe==7.9.0
 
 # Scraping
 beautifulsoup4==4.12.3
+
+# AI
+google-generativeai>=0.3.2
