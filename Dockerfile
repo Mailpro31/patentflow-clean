@@ -31,10 +31,10 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 # ⚡ SPEED UP: Install PyTorch CPU only first using uv
 RUN uv pip install --system --no-cache torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
-# ⚡ SPEED UP: Install heavy AI libs with CPU index explicitly
-RUN uv pip install --system --no-cache sentence-transformers --index-url https://download.pytorch.org/whl/cpu
+# ⚡ SPEED UP: Install heavy AI libs (sentence-transformers) from PyPI, ensuring it uses the previously installed cpu torch
+RUN uv pip install --system --no-cache sentence-transformers
 
-# Install Python dependencies using uv, enforcing CPU versions for all sub-dependencies
+# Install Python dependencies using uv, enforcing CPU versions for all sub-dependencies where possible
 RUN uv pip install --system --no-cache -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Copy application code from backend folder
