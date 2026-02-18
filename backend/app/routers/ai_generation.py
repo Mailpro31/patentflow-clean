@@ -23,7 +23,7 @@ from app.services.ai_writer_service import ai_writer
 from app.services.text_linter import patent_linter, PatentSection
 from app.models.generation_mode import GenerationMode
 from app.services.prompts.patent_engineer_prompts import MODE_CONFIGS
-from app.middleware.auth import get_current_user
+from app.dependencies import get_current_user
 
 logger = logging.getLogger(__name__)
 
