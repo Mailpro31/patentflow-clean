@@ -60,7 +60,7 @@ class QualityScoreResponse(BaseModel):
     details: Dict
 
 
-class Patent GenerationResponse(BaseModel):
+class PatentGenerationResponse(BaseModel):
     """Réponse de génération de document de brevet."""
     document_id: Optional[UUID] = None
     title: str
