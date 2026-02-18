@@ -46,7 +46,8 @@ class ProjectResponse(ProjectBase):
     model_config = {"from_attributes": True}
 
 
+from app.schemas.patent import PatentResponse
+
 class ProjectWithPatents(ProjectResponse):
     """Schema for project response with related patents."""
-    from app.schemas.patent import PatentResponse
     patents: List[PatentResponse] = []
