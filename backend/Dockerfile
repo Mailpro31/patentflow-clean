@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     postgresql-client \
     potrace \
+    pkg-config \
+    libagg-dev \
+    libpotrace-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependencies
