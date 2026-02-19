@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     curl \
     postgresql-client \
+    potrace \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependencies
