@@ -20,6 +20,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-dev \
     postgresql-client \
     curl \
+    potrace \
+    pkg-config \
+    libagg-dev \
+    libpotrace-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependencies from backend folder
