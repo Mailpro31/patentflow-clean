@@ -3,7 +3,7 @@ Routes API pour annuités INPI.
 """
 
 import logging
-from fastapi import APIRouter, Depends, HTTPException, status, Query
+from fastapi import APIRouter, Depends, HTTPException, status, Query, Path
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 
@@ -139,7 +139,7 @@ async def get_rates_table():
 )
 async def get_payment_for_year(
     project_id: UUID,
-    year: int = Query(..., ge=1, le=20, description="Year (1-20)"),
+    year: int = Path(..., ge=1, le=20, description="Year (1-20)"),
     current_user: dict = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
