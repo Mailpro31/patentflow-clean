@@ -14,6 +14,8 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 
 # Install system dependencies
+# Note: libagg-dev / libpotrace-dev removed — pypotrace C extension not used.
+# The 'potrace' CLI binary is kept for SVG vectorisation via subprocess.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     build-essential \
@@ -22,8 +24,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     potrace \
     pkg-config \
-    libagg-dev \
-    libpotrace-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependencies from backend folder
@@ -39,7 +39,10 @@ RUN uv pip install --system --no-cache torch torchvision --index-url https://dow
 RUN uv pip install --system --no-cache sentence-transformers
 
 # Install Python dependencies using uv, enforcing CPU versions for all sub-dependencies where possible
-RUN uv pip install --system --no-cache -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+# pypotrace is excluded: it's a C extension that fails to build without libagg headers.
+# Vectorisation uses the 'potrace' system binary instead (already installed above).
+RUN grep -v 'pypotrace' requirements.txt > requirements_filtered.txt && \
+    uv pip install --system --no-cache -r requirements_filtered.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Copy application code from backend folder
 COPY backend/app ./app

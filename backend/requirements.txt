@@ -36,6 +36,8 @@ google-cloud-aiplatform>=1.38.0
 
 # SVG Processing (Force rebuild)
 svgwrite==1.4.3
+Pillow>=10.0.0
+numpy>=1.26.0
 
 # Payments
 stripe==7.9.0
@@ -46,4 +48,5 @@ beautifulsoup4==4.12.3
 # AI
 google-generativeai>=0.3.2
 replicate>=0.25.1
-pypotrace>=0.1.2
+# pypotrace removed: C extension unreliable on Python 3.12.
+# Vectorization now uses the 'potrace' system binary (installed via apt in Dockerfile).
