@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 
 from app.database import get_db
-from app.middleware.auth import get_current_user
+from app.dependencies import get_current_user
 from app.schemas.transactional import (
     AnchorRequest,
     AnchorResponse,

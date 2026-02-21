@@ -24,7 +24,7 @@ from app.schemas.image_processing import (
 )
 from app.services.diagram_pipeline_service import diagram_pipeline
 from app.services.image_generator_service import TECHNICAL_DIAGRAM_PROMPTS
-from app.middleware.auth import get_current_user
+from app.dependencies import get_current_user
 
 logger = logging.getLogger(__name__)
 
