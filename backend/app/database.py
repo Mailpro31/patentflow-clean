@@ -36,15 +36,29 @@ class Base(DeclarativeBase):
     pass
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 async def init_db():
     """Initialize database and create tables."""
-    # Enable pgvector extension
+    # Try to enable pgvector extension (requires pgvector to be installed on the DB server)
     async with engine.begin() as conn:
-        await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-    
+        try:
+            await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+            logger.info("pgvector extension enabled")
+        except Exception as e:
+            logger.warning(
+                f"pgvector extension not available: {e}. "
+                "Vector search features will be disabled. "
+                "Install pgvector on the PostgreSQL server to enable them."
+            )
+
     # Create all tables
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
